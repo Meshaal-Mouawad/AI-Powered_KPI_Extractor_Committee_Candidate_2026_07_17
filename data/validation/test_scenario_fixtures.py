@@ -5,7 +5,7 @@ from pathlib import Path
 from typing import Dict, Any, List
 
 # Add workspace root to sys.path so we can import packages correctly
-sys.path.insert(0, str(Path(__file__).parent.parent.resolve()))
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 try:
     from bluebook_generator.ai_generator import generate_kpi_details

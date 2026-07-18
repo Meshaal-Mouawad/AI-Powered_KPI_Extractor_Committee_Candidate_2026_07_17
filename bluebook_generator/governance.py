@@ -3,6 +3,7 @@ import re
 from pathlib import Path
 from typing import Any, Dict, List
 from governance_patch import evaluate_all_conflicts
+from .paths import GOVERNANCE_OVERRIDES_PATH, GOVERNANCE_RULES_PATH
 
 
 DEFAULT_RACI = {
@@ -30,16 +31,14 @@ def _load_json(path: Path, fallback: Any) -> Any:
 
 
 def load_governance_rules(root_dir: Path) -> Dict[str, Any]:
-    rules_path = root_dir / "bluebook_generator" / "governance_rules.json"
-    data = _load_json(rules_path, {})
+    data = _load_json(GOVERNANCE_RULES_PATH, {})
     if isinstance(data, dict):
         return data
     return {}
 
 
 def load_governance_overrides(docs_dir: Path) -> Dict[str, Any]:
-    override_path = docs_dir / "governance_overrides.json"
-    data = _load_json(override_path, {})
+    data = _load_json(GOVERNANCE_OVERRIDES_PATH, {})
     if isinstance(data, dict):
         return data
     return {}

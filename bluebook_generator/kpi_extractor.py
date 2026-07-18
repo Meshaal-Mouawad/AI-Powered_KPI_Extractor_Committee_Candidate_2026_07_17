@@ -426,20 +426,22 @@ def evaluate_candidate_promotion(
         "generated_scenario_kpis" in normalized_path.split(os.sep)
         or bool(re.search(r"(?im)^\s*#\s*Expected LEAP Result\s*:", context))
     )
-    scanning_scenario_suite = normalized_root.endswith(os.path.join("phase3", "generated_scenario_kpis"))
+    scanning_scenario_suite = normalized_root.endswith(
+        os.path.join("data", "validation", "generated_scenario_kpis")
+    )
 
     if is_scenario_fixture and not scanning_scenario_suite:
         return False, _candidate_review_record(
             candidate,
             "Scenario fixture evidence is not promoted during a whole-repository scan.",
-            "Scan phase3/generated_scenario_kpis directly when validating fixture scenarios.",
+            "Scan data/validation/generated_scenario_kpis directly when validating fixture scenarios.",
             file_path,
         )
 
     # 1. Reject clearly invalid, artificial, or non-business names
     invalid_name_patterns = [
         r"(?i)intentionalgoverror",
-        r"(?i)phase3",
+        r"(?i)data validation",
         r"(?i)test",
         r"(?i)mock",
         r"(?i)debug",

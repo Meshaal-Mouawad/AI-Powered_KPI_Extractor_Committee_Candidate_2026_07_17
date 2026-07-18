@@ -17,10 +17,10 @@ from pathlib import Path
 from urllib.parse import urldefrag, unquote, urlsplit
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 DOCS_BUILD = ROOT / "docs" / "_build"
-REPORT_MD = ROOT / "phase3" / "generated_bluebook_validation_report.md"
-REPORT_JSON = ROOT / "phase3" / "generated_bluebook_validation_report.json"
+REPORT_MD = Path(__file__).resolve().parent / "generated_bluebook_validation_report.md"
+REPORT_JSON = Path(__file__).resolve().parent / "generated_bluebook_validation_report.json"
 
 COMPLIANCE_STANDARDS = {
     "KSA-PDPL-REG-01": "KSA PDPL",

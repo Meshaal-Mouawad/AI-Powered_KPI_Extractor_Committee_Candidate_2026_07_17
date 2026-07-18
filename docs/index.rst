@@ -58,7 +58,7 @@ KPI Intelligence Workspace
            </div>
          </div>
          <div class="portfolio-dossier-list dashboard-recent-list">
-           <a class="portfolio-dossier-row dashboard-dossier-row" href="kpi_flare_recovery_pct.html"><div class="portfolio-dossier-name"><div class="sidebar-status-badge state-needs-review" style="margin-bottom: 0; align-self: start;"><span class="status-dot"></span>Needs Review</div><strong>Flare Recovery Percentage (%)</strong></div><div class="portfolio-dossier-meta"><span>85% confidence</span><span>Finance</span><span>Finance Data Owner</span></div></a><a class="portfolio-dossier-row dashboard-dossier-row" href="compressor_vibration_index.html"><div class="portfolio-dossier-name"><div class="sidebar-status-badge state-needs-review" style="margin-bottom: 0; align-self: start;"><span class="status-dot"></span>Needs Review</div><strong>Compressor Vibration Index</strong></div><div class="portfolio-dossier-meta"><span>90% confidence</span><span>Maintenance</span><span>Maintenance Data Owner</span></div></a><a class="portfolio-dossier-row dashboard-dossier-row" href="signed_lineage_audit_trail.html"><div class="portfolio-dossier-name"><div class="sidebar-status-badge state-validated" style="margin-bottom: 0; align-self: start; opacity: 0.72;"><span class="status-dot"></span>Validated</div><strong>Signed Lineage Audit Trail</strong></div><div class="portfolio-dossier-meta"><span>90% confidence</span><span>Enterprise</span><span>Enterprise Data Owner</span></div></a><a class="portfolio-dossier-row dashboard-dossier-row" href="gross_margin_percentage.html"><div class="portfolio-dossier-name"><div class="sidebar-status-badge state-needs-review" style="margin-bottom: 0; align-self: start;"><span class="status-dot"></span>Needs Review</div><strong>Gross Margin Percentage</strong></div><div class="portfolio-dossier-meta"><span>90% confidence</span><span>Enterprise</span><span>Enterprise Data Owner</span></div></a><a class="portfolio-dossier-row dashboard-dossier-row" href="flare_emission_recovery_rate.html"><div class="portfolio-dossier-name"><div class="sidebar-status-badge state-needs-review" style="margin-bottom: 0; align-self: start;"><span class="status-dot"></span>Needs Review</div><strong>Flare Emission Recovery Rate</strong></div><div class="portfolio-dossier-meta"><span>90% confidence</span><span>Finance</span><span>Finance Data Owner</span></div></a><a class="portfolio-dossier-row dashboard-dossier-row" href="ethylene_production_yield.html"><div class="portfolio-dossier-name"><div class="sidebar-status-badge state-validated" style="margin-bottom: 0; align-self: start; opacity: 0.72;"><span class="status-dot"></span>Validated</div><strong>Ethylene Production Yield</strong></div><div class="portfolio-dossier-meta"><span>90% confidence</span><span>Operations</span><span>Operations Data Owner</span></div></a>
+           <a class="portfolio-dossier-row dashboard-dossier-row" href="cooling_water_deltat_c.html"><div class="portfolio-dossier-name"><div class="sidebar-status-badge state-needs-review" style="margin-bottom: 0; align-self: start;"><span class="status-dot"></span>Needs Review</div><strong>Cooling Water Delta-T (°C)</strong></div><div class="portfolio-dossier-meta"><span>90% confidence</span><span>Enterprise</span><span>Enterprise Data Owner</span></div></a><a class="portfolio-dossier-row dashboard-dossier-row" href="hse_safety_incident_rate.html"><div class="portfolio-dossier-name"><div class="sidebar-status-badge state-needs-review" style="margin-bottom: 0; align-self: start;"><span class="status-dot"></span>Needs Review</div><strong>HSE Safety Incident Rate</strong></div><div class="portfolio-dossier-meta"><span>95% confidence</span><span>HSE</span><span>HSE Data Owner</span></div></a><a class="portfolio-dossier-row dashboard-dossier-row" href="signed_lineage_audit_trail.html"><div class="portfolio-dossier-name"><div class="sidebar-status-badge state-validated" style="margin-bottom: 0; align-self: start; opacity: 0.72;"><span class="status-dot"></span>Validated</div><strong>Signed Lineage Audit Trail</strong></div><div class="portfolio-dossier-meta"><span>90% confidence</span><span>Enterprise</span><span>Enterprise Data Owner</span></div></a><a class="portfolio-dossier-row dashboard-dossier-row" href="compressor_vibration_index.html"><div class="portfolio-dossier-name"><div class="sidebar-status-badge state-needs-review" style="margin-bottom: 0; align-self: start;"><span class="status-dot"></span>Needs Review</div><strong>Compressor Vibration Index</strong></div><div class="portfolio-dossier-meta"><span>90% confidence</span><span>Maintenance</span><span>Maintenance Data Owner</span></div></a><a class="portfolio-dossier-row dashboard-dossier-row" href="propylene_to_ethylene_pe_ratio.html"><div class="portfolio-dossier-name"><div class="sidebar-status-badge state-needs-review" style="margin-bottom: 0; align-self: start;"><span class="status-dot"></span>Needs Review</div><strong>Propylene to Ethylene (P/E) Ratio</strong></div><div class="portfolio-dossier-meta"><span>90% confidence</span><span>Enterprise</span><span>Enterprise Data Owner</span></div></a><a class="portfolio-dossier-row dashboard-dossier-row" href="ethylene_production_yield.html"><div class="portfolio-dossier-name"><div class="sidebar-status-badge state-validated" style="margin-bottom: 0; align-self: start; opacity: 0.72;"><span class="status-dot"></span>Validated</div><strong>Ethylene Production Yield</strong></div><div class="portfolio-dossier-meta"><span>90% confidence</span><span>Operations</span><span>Operations Data Owner</span></div></a>
          </div>
        </section>
      </div>
@@ -71,15 +71,15 @@ KPI Intelligence Workspace
    discovery_report
    raci_directory
    extraction_review
-   kpi_flare_recovery_pct
-   compressor_vibration_index
-   signed_lineage_audit_trail
-   gross_margin_percentage
-   flare_emission_recovery_rate
-   ethylene_production_yield
-   hse_safety_incident_rate
-   propylene_to_ethylene_pe_ratio
    cooling_water_deltat_c
+   hse_safety_incident_rate
+   signed_lineage_audit_trail
+   compressor_vibration_index
+   propylene_to_ethylene_pe_ratio
+   ethylene_production_yield
+   flare_emission_recovery_rate
+   kpi_flare_recovery_pct
+   gross_margin_percentage
    yield_percentage
    inventory_modification_gap
    mean_time_between_failures_mtbf

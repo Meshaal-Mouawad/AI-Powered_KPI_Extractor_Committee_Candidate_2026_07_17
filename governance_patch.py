@@ -1,6 +1,7 @@
 import re
 import json
 from pathlib import Path
+from bluebook_generator.paths import GOVERNANCE_CONFIG_PATH, KNOWLEDGE_BASE_DIR
 
 
 # ---------------------------------------------------------------------------
@@ -8,7 +9,7 @@ from pathlib import Path
 # ---------------------------------------------------------------------------
 
 def _load_governance_kb():
-    path = Path("phase3/kpi_governance.json")
+    path = GOVERNANCE_CONFIG_PATH
     if path.exists():
         try:
             return json.loads(path.read_text())
@@ -18,7 +19,7 @@ def _load_governance_kb():
 
 
 def _load_iso_framework():
-    path = Path("bluebook_generator/kb/iso_framework.json")
+    path = KNOWLEDGE_BASE_DIR / "iso_framework.json"
     if path.exists():
         try:
             return json.loads(path.read_text())

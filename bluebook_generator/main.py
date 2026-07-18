@@ -11,6 +11,7 @@ from urllib.parse import quote, urlencode
 from .kpi_extractor import find_kpis_in_directory
 from .ai_generator import _ai_engine_enabled, generate_kpi_details
 from .governance import attach_governance
+from .paths import BUSINESS_OVERRIDES_PATH, KNOWLEDGE_BASE_DIR
 
 # Public API from this module
 __all__ = ["generate_bluebook"]
@@ -45,6 +46,14 @@ DISPLAY_NAME_OVERRIDES = {
     "oee %": "Overall Equipment Effectiveness (OEE)",
     "oee": "Overall Equipment Effectiveness (OEE)",
 }
+
+
+def _package_display_path(value: str | Path) -> str:
+    """Return a portable repository-relative path for generated materials."""
+    try:
+        return str(Path(value).expanduser().resolve().relative_to(ROOT_DIR))
+    except (OSError, ValueError):
+        return Path(value).name
 
 
 def _business_display_name(raw_name: str) -> str:
@@ -155,19 +164,16 @@ def _definition_override_candidates(kpi: dict) -> list[str]:
 
 def _load_definition_overrides() -> dict:
     merged: dict = {}
-    docs_overrides = _load_json_file(DOCS_SOURCE_DIR / "overrides.json", {})
+    docs_overrides = _load_json_file(BUSINESS_OVERRIDES_PATH, {})
     if isinstance(docs_overrides, dict):
         for name, fields in docs_overrides.items():
             if isinstance(fields, dict):
                 merged[name] = {
                     "status": "APPROVED_BY_BUSINESS",
                     "fields": fields,
-                    "source": "docs/overrides.json",
+                    "source": str(BUSINESS_OVERRIDES_PATH.relative_to(ROOT_DIR)),
                 }
-    for override_path in (
-        ROOT_DIR / "kb" / "overrides.json",
-        ROOT_DIR / "bluebook_generator" / "kb" / "overrides.json",
-    ):
+    for override_path in (KNOWLEDGE_BASE_DIR / "overrides.json",):
         kb_overrides = _load_json_file(override_path, {})
         kb_kpis = kb_overrides.get("kpis", {}) if isinstance(kb_overrides, dict) else {}
         if isinstance(kb_kpis, dict):
@@ -1489,22 +1495,10 @@ def create_rst_file(
     else:
         kpi_data["code_context"] = raw_code
         programmatic_formula = generate_formula_from_code(raw_code)
-    kpi_data["has_source_link"] = bool(str(file_path).strip())
-    if kpi_data["has_source_link"]:
-        source_path = Path(str(file_path)).expanduser()
-        if not source_path.is_absolute():
-            source_path = (ROOT_DIR / source_path).resolve()
-        else:
-            source_path = source_path.resolve()
-        vscode_path = quote(str(source_path), safe="/:%")
-        pycharm_path = quote(str(source_path), safe="/:")
-        kpi_data["vscode_url"] = f"vscode://file{vscode_path}:{source_line_number}"
-        kpi_data["pycharm_url"] = (
-            f"pycharm://open?file={pycharm_path}&line={source_line_number}"
-        )
-    else:
-        kpi_data["vscode_url"] = ""
-        kpi_data["pycharm_url"] = ""
+    # Committee artifacts retain portable evidence references, not machine-local IDE URLs.
+    kpi_data["has_source_link"] = False
+    kpi_data["vscode_url"] = ""
+    kpi_data["pycharm_url"] = ""
     if file_path:
         try:
             display_base = Path(kpi_data.get("source_root") or ROOT_DIR).expanduser().resolve()
@@ -3214,7 +3208,7 @@ def create_discovery_report(
       <div class="evidence-detail-grid">
         <div>
           <div class="micro-label">Workspace Root</div>
-          <strong class="font-mono">{escape(source_code_path)}</strong>
+          <strong class="font-mono">{escape(_package_display_path(source_code_path))}</strong>
         </div>
         <div>
           <div class="micro-label">Eligible Files</div>
@@ -3607,7 +3601,7 @@ def create_extraction_review(candidate_review: list[dict], source_code_path: str
           <span class="leap-card-caption">evaluated by extractor</span>
         </div>
       </div>
-      <p class="leap-card-caption">Source scanned: {escape(str(source_code_path or ""))}</p>
+      <p class="leap-card-caption">Source scanned: {escape(_package_display_path(source_code_path))}</p>
     </section>
     <section class="dashboard-dossier-section">
       <div class="dashboard-section-heading">

@@ -21,7 +21,7 @@ Extraction Review
              <span class="leap-card-caption">evaluated by extractor</span>
            </div>
          </div>
-         <p class="leap-card-caption">Source scanned: /Users/meshaalmouawad/Downloads/LEAP-SUB/AI-Powered_KPI_Extractor_Committee_Candidate_2026_07_17/sample_project</p>
+         <p class="leap-card-caption">Source scanned: data/demo/sample_project</p>
        </section>
        <section class="dashboard-dossier-section">
          <div class="dashboard-section-heading">
@@ -39,7 +39,7 @@ Extraction Review
              </summary>
              <div class="card-row"><span class="label">Detection:</span><span class="value">python_function</span></div>
              <div class="card-row"><span class="label">Language:</span><span class="value">python</span></div>
-             <div class="card-row"><span class="label">Source:</span><span class="value code-font">sample_project/conflict_threshold_vibration.py</span></div>
+             <div class="card-row"><span class="label">Source:</span><span class="value code-font">data/demo/sample_project/conflict_threshold_vibration.py</span></div>
              <div class="card-row"><span class="label">Line:</span><span class="value">15</span></div>
              <div class="review-signal-card signal-owner">
                <div class="signal-title">Why it was not promoted</div>
@@ -75,7 +75,7 @@ Extraction Review
              </summary>
              <div class="card-row"><span class="label">Detection:</span><span class="value">comment</span></div>
              <div class="card-row"><span class="label">Language:</span><span class="value">iec_st</span></div>
-             <div class="card-row"><span class="label">Source:</span><span class="value code-font">sample_project/lc_kpi.st</span></div>
+             <div class="card-row"><span class="label">Source:</span><span class="value code-font">data/demo/sample_project/lc_kpi.st</span></div>
              <div class="card-row"><span class="label">Line:</span><span class="value">1</span></div>
              <div class="review-signal-card signal-owner">
                <div class="signal-title">Why it was not promoted</div>

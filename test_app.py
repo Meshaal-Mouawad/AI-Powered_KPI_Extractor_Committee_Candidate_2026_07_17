@@ -75,7 +75,7 @@ def test_compliance_alarms_pdpl_pii():
     from governance_patch import run_compliance_alarms
     # Positive case: PII triggers
     kpi_trigger = {
-        "file_path": "sample_project/dummy_compliance_pdpl_pii.py",
+        "file_path": "data/demo/sample_project/dummy_compliance_pdpl_pii.py",
         "code_context": "# KPI: Customer Activity Index\ndef calculate(national_id, phone_num): pass"
     }
     alarms_trigger = run_compliance_alarms(kpi_trigger)
@@ -85,7 +85,7 @@ def test_compliance_alarms_pdpl_pii():
 
     # Clean control case: Masking present, does not trigger
     kpi_clean = {
-        "file_path": "sample_project/dummy_compliance_pdpl_pii_clean.py",
+        "file_path": "data/demo/sample_project/dummy_compliance_pdpl_pii_clean.py",
         "code_context": "# KPI: Masked Customer Activity Index\ndef calculate_activity_clean(national_id):\n    masked_id = mask_value(national_id)\n    return 1.0"
     }
     alarms_clean = run_compliance_alarms(kpi_clean)
@@ -96,7 +96,7 @@ def test_compliance_alarms_nca_sec():
     from governance_patch import run_compliance_alarms
     # Positive case: os.system/eval triggers
     kpi_trigger = {
-        "file_path": "sample_project/dummy_compliance_nca_sec.py",
+        "file_path": "data/demo/sample_project/dummy_compliance_nca_sec.py",
         "code_context": "eval('2+2')\nos.system('echo')"
     }
     alarms_trigger = run_compliance_alarms(kpi_trigger)
@@ -107,7 +107,7 @@ def test_compliance_alarms_nca_sec():
 
     # Clean control case
     kpi_clean = {
-        "file_path": "sample_project/dummy_compliance_nca_sec_clean.py",
+        "file_path": "data/demo/sample_project/dummy_compliance_nca_sec_clean.py",
         "code_context": "len('safe')"
     }
     alarms_clean = run_compliance_alarms(kpi_clean)
@@ -118,7 +118,7 @@ def test_compliance_alarms_nca_aud():
     from governance_patch import run_compliance_alarms
     # Positive case: update/write without audit logs
     kpi_trigger = {
-        "file_path": "sample_project/dummy_compliance_nca_aud.py",
+        "file_path": "data/demo/sample_project/dummy_compliance_nca_aud.py",
         "code_context": "UPDATE inventory SET qty = 10"
     }
     alarms_trigger = run_compliance_alarms(kpi_trigger)
@@ -127,7 +127,7 @@ def test_compliance_alarms_nca_aud():
 
     # Clean control case: modification with all audit keywords
     kpi_clean = {
-        "file_path": "sample_project/dummy_compliance_nca_aud_clean.py",
+        "file_path": "data/demo/sample_project/dummy_compliance_nca_aud_clean.py",
         "code_context": "UPDATE inventory -- actor: admin timestamp: 2026 before: 1 after: 2 diff: 1"
     }
     alarms_clean = run_compliance_alarms(kpi_clean)
@@ -138,7 +138,7 @@ def test_compliance_alarms_gdpr_proc():
     from governance_patch import run_compliance_alarms
     # Positive case: cross_border / gdpr without consent or processing agreement
     kpi_trigger = {
-        "file_path": "sample_project/dummy_compliance_gdpr_proc.py",
+        "file_path": "data/demo/sample_project/dummy_compliance_gdpr_proc.py",
         "code_context": "cross_border export of personal_data"
     }
     alarms_trigger = run_compliance_alarms(kpi_trigger)
@@ -147,7 +147,7 @@ def test_compliance_alarms_gdpr_proc():
 
     # Clean control case: with agreement/consent
     kpi_clean = {
-        "file_path": "sample_project/dummy_compliance_gdpr_proc_clean.py",
+        "file_path": "data/demo/sample_project/dummy_compliance_gdpr_proc_clean.py",
         "code_context": "cross_border dataset transfer under processing_agreement with consent"
     }
     alarms_clean = run_compliance_alarms(kpi_clean)
@@ -158,7 +158,7 @@ def test_compliance_alarms_soc2_lineage():
     from governance_patch import run_compliance_alarms
     # Positive case: lineage/trace without signature
     kpi_trigger = {
-        "file_path": "sample_project/dummy_compliance_soc2_lineage.py",
+        "file_path": "data/demo/sample_project/dummy_compliance_soc2_lineage.py",
         "code_context": "lineage trace tracking"
     }
     alarms_trigger = run_compliance_alarms(kpi_trigger)
@@ -167,7 +167,7 @@ def test_compliance_alarms_soc2_lineage():
 
     # Clean control case: signature present
     kpi_clean = {
-        "file_path": "sample_project/dummy_compliance_soc2_lineage_clean.py",
+        "file_path": "data/demo/sample_project/dummy_compliance_soc2_lineage_clean.py",
         "code_context": "lineage trace tracking signed signature"
     }
     alarms_clean = run_compliance_alarms(kpi_clean)
@@ -179,7 +179,7 @@ def test_review_queue_signal_separation():
 
     # 1. Validated KPI with no conflicts, no compliance alarms, no technical notes
     kpi_clean = {
-        "file_path": "sample_project/dummy_clean_kpi.py",
+        "file_path": "data/demo/sample_project/dummy_clean_kpi.py",
         "code_context": "# KPI: Clean Yield\n# Formula: 1.0\ndef calculate(): return 1.0"
     }
     details_clean = {
@@ -193,7 +193,7 @@ def test_review_queue_signal_separation():
 
     # 2. Missing formula comment alone does not create severe high-severity conflict, but a medium audit note
     kpi_no_comment = {
-        "file_path": "sample_project/dummy_no_comment.py",
+        "file_path": "data/demo/sample_project/dummy_no_comment.py",
         "code_context": "def calculate(): return 1.0"
     }
     details_no_comment = {}
@@ -204,7 +204,7 @@ def test_review_queue_signal_separation():
 
     # 3. TODO/FIXME/BUG creates technical note (Medium severity)
     kpi_todo = {
-        "file_path": "sample_project/dummy_todo.py",
+        "file_path": "data/demo/sample_project/dummy_todo.py",
         "code_context": "# TODO: fix logic later\ndef calculate(): return 1.0"
     }
     details_todo = {
@@ -220,7 +220,7 @@ def test_review_queue_signal_separation():
     # 4. Governance conflict creates high-severity conflict
     kpi_gov = {
         "name": "HSE Safety incident rate",
-        "file_path": "sample_project/dummy_gov.py",
+        "file_path": "data/demo/sample_project/dummy_gov.py",
         "code_context": "SELECT * FROM finance.ledger"
     }
     details_gov = {

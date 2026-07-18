@@ -1,25 +1,21 @@
 #!/usr/bin/env python3
 """
 Simple verification runner for the KPI Bluebook generator.
-It executes the pipeline against the sample_project and prints progress lines.
+It executes the pipeline against the bundled demonstration workspace and prints progress lines.
 Usage:
   python run_generation.py [<source_dir>]
-Defaults to ./sample_project if no source_dir is provided.
+The public ``sample_project`` alias resolves to the bundled demonstration workspace.
 """
 
 import sys
 import pathlib
 
 from bluebook_generator.main import generate_bluebook
+from bluebook_generator.paths import DEMO_PROJECT_DIR, resolve_workspace_path
 
 
 def main(argv: list[str]) -> int:
-    root = pathlib.Path(__file__).parent.resolve()
-    source = (
-        pathlib.Path(argv[1]).resolve()
-        if len(argv) > 1
-        else (root / "sample_project").resolve()
-    )
+    source = resolve_workspace_path(argv[1]) if len(argv) > 1 else DEMO_PROJECT_DIR
     for msg in generate_bluebook(str(source)):
         print(msg)
     # success exit - errors are printed by the generator and pipeline continues

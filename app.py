@@ -11,6 +11,11 @@ from pathlib import Path
 from flask import Flask, render_template, request, jsonify, send_from_directory
 from bluebook_generator.main import generate_bluebook
 from bluebook_generator.kpi_extractor import find_kpis_in_directory
+from bluebook_generator.paths import (
+    BUSINESS_OVERRIDES_PATH,
+    GOVERNANCE_OVERRIDES_PATH as DATA_GOVERNANCE_OVERRIDES_PATH,
+    KNOWLEDGE_BASE_DIR,
+)
 
 # Add these imports for deep scan
 from bluebook_generator.kpi_extractor import (
@@ -20,17 +25,12 @@ from bluebook_generator.kpi_extractor import (
 app = Flask(__name__)
 
 BLUEBOOK_DIR = os.path.join(os.getcwd(), "docs", "_build")
-PROJECT_ROOT = Path(os.getcwd()).resolve()
+PROJECT_ROOT = Path(__file__).resolve().parent
 BLUEBOOK_BUILD_PATH = (PROJECT_ROOT / "docs" / "_build").resolve()
 DOCS_STATIC_PATH = (PROJECT_ROOT / "docs" / "_static").resolve()
-OVERRIDES_PATH = os.path.join(os.getcwd(), "docs", "overrides.json")
-KB_OVERRIDES_PATH = os.path.join(
-    os.getcwd(), "bluebook_generator", "kb", "overrides.json"
-)
-ROOT_KB_OVERRIDES_PATH = os.path.join(os.getcwd(), "kb", "overrides.json")
-GOVERNANCE_OVERRIDES_PATH = os.path.join(
-    os.getcwd(), "docs", "governance_overrides.json"
-)
+OVERRIDES_PATH = str(BUSINESS_OVERRIDES_PATH)
+KB_OVERRIDES_PATH = str(KNOWLEDGE_BASE_DIR / "overrides.json")
+GOVERNANCE_OVERRIDES_PATH = str(DATA_GOVERNANCE_OVERRIDES_PATH)
 
 # --- Global state to track progress ---
 status = {"running": False, "output": "Ready to start."}
@@ -271,7 +271,7 @@ def get_overrides(kpi_name):
             existing = data.get(kpi_name, {})
             if existing:
                 return jsonify(existing)
-        for ledger_path in (ROOT_KB_OVERRIDES_PATH, KB_OVERRIDES_PATH):
+        for ledger_path in (KB_OVERRIDES_PATH,):
             data = _load_override_ledger(ledger_path)
             kpi_block = data.get("kpis", {}).get(kpi_name, {}) if isinstance(data, dict) else {}
             fields = kpi_block.get("fields", {}) if isinstance(kpi_block, dict) else {}
@@ -317,7 +317,6 @@ def save_overrides():
         with open(OVERRIDES_PATH, "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
 
-        _save_override_ledger_entry(ROOT_KB_OVERRIDES_PATH, kpi_name, fields, payload)
         _save_override_ledger_entry(KB_OVERRIDES_PATH, kpi_name, fields, payload)
 
         return jsonify({"status": "saved"})

@@ -380,9 +380,6 @@ Maintenance to Operating Cost Ratio
                    <summary><h3>Operational Actions</h3></summary>
                    <button class="sidebar-btn btn-primary" type="button" onclick="window.print()">Print Certified Dossier</button>
                    
-                   <a class="sidebar-btn btn-secondary" href="vscode://file/Users/meshaalmouawad/Downloads/LEAP-SUB/AI-Powered_KPI_Extractor_Committee_Candidate_2026_07_17/sample_project/generic_kpi.txt:1">Open in VS Code</a>
-                   <a class="sidebar-btn btn-secondary" href="pycharm://open?file=/Users/meshaalmouawad/Downloads/LEAP-SUB/AI-Powered_KPI_Extractor_Committee_Candidate_2026_07_17/sample_project/generic_kpi.txt&line=1">Open in PyCharm</a>
-                   
                    <a class="sidebar-btn btn-secondary" href="/edit?kpi=Maintenance%20to%20Operating%20Cost%20Ratio" target="_blank">Edit Dossier</a>
                    <a class="sidebar-btn btn-secondary" href="discovery_report.html">Open Discovery Workspace</a>
                    <a class="sidebar-btn btn-secondary" href="raci_directory.html">Open RACI Directory</a>
