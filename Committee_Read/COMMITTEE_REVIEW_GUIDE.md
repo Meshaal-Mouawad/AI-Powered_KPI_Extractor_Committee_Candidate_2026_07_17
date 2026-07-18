@@ -1,6 +1,6 @@
 # LEAP Dissertation Committee Review Guide
 
-This guide is the committee entry point for the LEAP research artifact. The dissertation examines a knowledge gap: KPI business meaning, mathematical definitions, executable implementations, provenance, and review status are commonly separated across people, documents, and technical systems. LEAP is the code-anchored intervention used to investigate whether those forms of knowledge can be made inspectable together.
+This guide is the committee entry point for the LEAP research artifact. The dissertation examines a knowledge gap: KPI business meaning, mathematical definitions, executable implementations, provenance, and review status are commonly separated across people, documents, and technical systems. LEAP is the hybrid, code-anchored intervention used to investigate whether those forms of knowledge can be made inspectable together.
 
 The package demonstrates implemented technical behavior and provides a reviewable Interactive Bluebook. It should be read alongside the dissertation as evidence of technical feasibility, not as standalone proof of the prospective human and organizational hypotheses. In particular, meeting-duration observations are descriptive and noncausal; claims about reduced clarification time, improved interpretation, or adoption require the planned controlled and participant-level studies.
 
@@ -28,7 +28,8 @@ And navigate to `http://127.0.0.1:5000` in your browser.
 - **Visible uncertainty:** Missing formula declarations, conflicts, weak candidates, and rule-mapped conditions are routed to review rather than treated as silently resolved facts.
 
 ## 3. Implemented Technical Capabilities
-- **Deterministic Extraction Engine:** Scans target source files, extracts KPI comments (e.g. `# KPI:`, `-- Objective:`), and identifies math expressions.
+- **Hybrid Evidence Approach:** LEAP combines deterministic source analysis with AI-agent assistance. Deterministic routes identify and preserve traceable source evidence; the AI layer can provide evidence-grounded explanation and workflow support.
+- **Deterministic Evidence Engine:** Scans target source files, extracts KPI comments (e.g. `# KPI:`, `-- Objective:`), and identifies math expressions.
 - **MATE (Mathematical Annotation and Tagging Engine):** Renders annotated KPI formulas, associates operators/operands with business and development labels, and presents lineage details inside the Interactive Bluebook.
 - **Governance Engine:** Assigns RACI ownership based on source tags and local override rules.
 - **Review Queue:** Routes weak metric candidates to the review view, providing owner confirmation guidance, Copy Review Text, and Open Email Draft actions.
@@ -37,7 +38,7 @@ And navigate to `http://127.0.0.1:5000` in your browser.
 ## 4. Explicit Boundaries and Evidence Posture
 - **VATE (Visual Annotation Engine):** Not implemented.
 - **EBRE (Evidence-Based Rule Engine):** Not implemented.
-- **AI Enrichment Posture:** Optional AI enrichment is disabled by default, operates entirely out-of-band of deterministic extraction, and is not required for correctness.
+- **AI-Agent Boundary:** The AI agent supplements the evidence workflow; it does not replace source evidence, establish an authoritative formula, or remove the need for human review. Deterministic and AI-assisted capabilities are complementary parts of LEAP's hybrid approach.
 - **Compliance Boundaries:** Compliance checks are structural rule checks tested in bounded validation scenarios. They do not constitute legal compliance, regulatory certification, or audit assurance for GDPR, Saudi PDPL, NCA ECC, or SOC 2.
 - **Review Workflow Limits:** The review queue provides copy, drafting, and guidance actions. Persistent review state management (e.g., resolutions, approvals, overrides, or mutes) is not implemented.
 - **Research Claims:** This package demonstrates the technical intervention and its tested behaviors. It does not independently establish causal effects on meeting duration, documentation effort, comprehension, collaboration, satisfaction, or adoption.
@@ -65,7 +66,7 @@ To verify the extraction pipeline, run these commands from the repository root:
 
 ## 7. Review Readiness: READY_WITH_QUALIFICATIONS
 The committee candidate package is ready for evaluation with the following qualifications:
-- Optional AI enrichment is disabled by default.
+- AI-agent assistance is evidence-grounded and does not replace technical review or source authority.
 - Compliance scanner outputs are bounded checks and do not represent legal compliance certifications.
 - VATE and EBRE are not implemented.
 - Persistent state management for review queue decisions is not implemented.
