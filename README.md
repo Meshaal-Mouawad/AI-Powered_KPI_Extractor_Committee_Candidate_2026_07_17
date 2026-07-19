@@ -1,4 +1,4 @@
-# LEAP: A Code-Anchored Approach to the KPI Knowledge Gap
+# LEAP: A Bridging Code and Business Knowledge through Literate Programming: Deterministic Analysis and AI-Assisted Authoring for Enterprise KPI Knowledge Engineering
 
 LEAP (Literate Programming for Automated KPI Extraction) is the research artifact for a dissertation on a persistent enterprise problem: the business meaning of a Key Performance Indicator (KPI), its mathematical definition, its implementation in code, and its governance record are often maintained separately. That separation forces repeated translation between business and technical teams, makes review difficult, and allows documentation to drift from the executable logic that produces reported values.
 
